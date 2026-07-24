@@ -7,6 +7,7 @@ const tutorialNext = document.querySelector('#tutorial-next');
 const tutorialActions = document.querySelector('#tutorial-actions');
 const tutorialYes = document.querySelector('#tutorial-yes');
 const tutorialNo = document.querySelector('#tutorial-no');
+const leaveButton = document.querySelector('.leave-game');
 let position = { x: 50, y: 53 };
 let tutorialStep = 0;
 let walkingTimeout;
@@ -25,12 +26,18 @@ function showTutorial() {
   tutorial.hidden = false;
 }
 
-function updateMapState() {
-  if (window.location.hash === '#game-map') showTutorial();
-  else tutorial.hidden = true;
+function enterMap() {
+  document.body.classList.add('game-active');
+  showTutorial();
 }
 
-enterButton.addEventListener('click', () => window.setTimeout(showTutorial, 0));
+function leaveMap() {
+  document.body.classList.remove('game-active');
+  tutorial.hidden = true;
+}
+
+enterButton.addEventListener('click', enterMap);
+leaveButton.addEventListener('click', leaveMap);
 tutorialYes.addEventListener('click', () => {
   tutorialStep = 0;
   tutorialText.textContent = tutorialLines[tutorialStep];
@@ -48,11 +55,10 @@ tutorialNext.addEventListener('click', () => {
   tutorialText.textContent = tutorialLines[tutorialStep];
   if (tutorialStep === tutorialLines.length - 1) tutorialNext.textContent = 'Continue exploring';
 });
-window.addEventListener('hashchange', updateMapState);
-updateMapState();
+if (window.location.hash) history.replaceState(null, '', window.location.pathname);
 
 window.addEventListener('keydown', (event) => {
-  if (window.location.hash !== '#game-map') return;
+  if (!document.body.classList.contains('game-active')) return;
   const moves = { ArrowUp: [0, -1], w: [0, -1], ArrowDown: [0, 1], s: [0, 1], ArrowLeft: [-1, 0], a: [-1, 0], ArrowRight: [1, 0], d: [1, 0] };
   const move = moves[event.key];
   if (!move) return;
