@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101b1c" />
+    <title>Quest of Zelden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=DM+Mono&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="landing-page">
+      <nav class="topbar" aria-label="Primary navigation">
+        <a class="brand" href="#home" aria-label="Quest of Zelden home">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>Quest of Zelden</span>
+        </a>
+      </nav>
+
+      <section class="hero" id="home" aria-labelledby="game-title">
+        <p class="eyebrow"><span></span> A decentralized adventure <span></span></p>
+        <h1 id="game-title">Quest of<br /><em>Zelden</em></h1>
+        <a class="enter-button" href="#game-map" id="enter-game">
+          <span>Enter Game</span><b aria-hidden="true">→</b>
+        </a>
+      </section>
+    </main>
+    <main class="game-map" id="game-map" aria-label="Quest of Zelden game map">
+      <header class="game-hud">
+        <div class="map-title"><span>✦</span><strong>Quest of Zelden</strong><small>Verdant Wilds</small></div>
+        <div class="location">The Explorer's Clearing</div>
+        <a class="leave-game" href="#home">Exit map</a>
+      </header>
+      <div class="map-legend"><b>WASD</b> or <b>arrow keys</b> to explore</div>
+      <div class="player" id="player" aria-label="Player position"><div class="hero-sprite" aria-hidden="true"></div></div>
+      <div class="map-objective"><small>Current quest</small><strong>Find the hidden trail</strong></div>
+      <section class="tutorial" id="tutorial" aria-live="polite" aria-label="James's tutorial" hidden>
+        <img class="james-portrait" src="assets/James.png" alt="James" />
+        <div class="tutorial-dialogue">
+          <p class="tutorial-text" id="tutorial-text"></p>
+          <div class="tutorial-actions" id="tutorial-actions">
+            <button class="tutorial-choice" id="tutorial-yes" type="button">Yes</button>
+            <button class="tutorial-choice tutorial-no" id="tutorial-no" type="button">No</button>
+          </div>
+          <button class="tutorial-next" id="tutorial-next" type="button" hidden>Next <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
